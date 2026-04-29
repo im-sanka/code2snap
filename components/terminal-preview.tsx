@@ -37,10 +37,27 @@ export const bgGradients: Record<string, string> = {
   'solid-4': 'bg-[#1e1e1e]',
 };
 
+const isBrightHexColor = (hex?: string) => {
+  if (!hex) return false;
+  const normalized = hex.replace('#', '');
+  if (!/^[0-9a-fA-F]{6}$/.test(normalized)) return false;
+
+  const red = parseInt(normalized.slice(0, 2), 16);
+  const green = parseInt(normalized.slice(2, 4), 16);
+  const blue = parseInt(normalized.slice(4, 6), 16);
+
+  return (red * 299 + green * 587 + blue * 114) / 1000 > 170;
+};
+
 export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
   ({ config }, ref) => {
     const theme = themeMap[config.theme] || themes.okaidia;
     const isLargeTerminal = config.terminalWidth === 'lg' || config.terminalWidth === 'xl';
+    const useDarkWatermark = config.showBackground && (
+      config.backgroundClass === 'solid-2' ||
+      config.backgroundClass === 'solid-3' ||
+      (config.backgroundType === 'solid' && isBrightHexColor(config.customBackground))
+    );
     
     return (
       <div 
@@ -118,7 +135,7 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
           </div>
 
         </div>
-        <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] leading-none font-mono tracking-wide text-white/60 select-none whitespace-nowrap">
+        <span className={cn("pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] leading-none font-mono tracking-wide select-none whitespace-nowrap", useDarkWatermark ? "text-black/55" : "text-white/60")}>
           {'>>Code2Snap<<'}
         </span>
       </div>
