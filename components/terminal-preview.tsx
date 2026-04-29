@@ -46,7 +46,7 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
       <div 
         ref={ref}
         className={cn(
-          "w-full sm:w-fit relative flex items-center justify-center transition-all duration-300 bg-cover bg-center",
+          "box-border w-full max-w-full sm:w-fit sm:max-w-none relative flex items-center justify-center transition-all duration-300 bg-cover bg-center",
           config.showBackground && config.backgroundType === 'gradient' ? bgGradients[config.backgroundClass] : 'bg-transparent'
         )}
         style={{ 
@@ -58,7 +58,7 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
       >
         <div 
           className={cn(
-            "flex flex-col shadow-2xl transition-all duration-300 max-w-[100vw] sm:max-w-none",
+            "flex min-w-0 flex-col shadow-2xl transition-all duration-300 max-w-full sm:max-w-none",
             config.terminalWidth === 'auto' ? 'w-auto min-w-[300px]' : 
             config.terminalWidth === 'sm' ? 'w-full sm:min-w-[512px]' : 
             config.terminalWidth === 'lg' ? 'w-full sm:w-[1024px] sm:min-w-[1024px]' : 
