@@ -1,0 +1,22 @@
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# Local editor/config files
+.vscode/
+.idea/
+
+# Package manager caches
+.bun/
+.yarn/
+.pnpm-store/
