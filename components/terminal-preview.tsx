@@ -40,12 +40,13 @@ export const bgGradients: Record<string, string> = {
 export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
   ({ config }, ref) => {
     const theme = themeMap[config.theme] || themes.okaidia;
+    const isLargeTerminal = config.terminalWidth === 'lg' || config.terminalWidth === 'xl';
     
     return (
       <div 
         ref={ref}
         className={cn(
-          "w-full relative flex items-center justify-center transition-all duration-300 bg-cover bg-center",
+          "w-full sm:w-fit relative flex items-center justify-center transition-all duration-300 bg-cover bg-center",
           config.showBackground && config.backgroundType === 'gradient' ? bgGradients[config.backgroundClass] : 'bg-transparent'
         )}
         style={{ 
@@ -57,17 +58,17 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
       >
         <div 
           className={cn(
-            "relative flex flex-col shadow-2xl transition-all duration-300 max-w-[100vw] sm:max-w-none",
+            "flex flex-col shadow-2xl transition-all duration-300 max-w-[100vw] sm:max-w-none",
             config.terminalWidth === 'auto' ? 'w-auto min-w-[300px]' : 
-            config.terminalWidth === 'sm' ? 'w-full sm:w-[512px]' : 
-            config.terminalWidth === 'lg' ? 'w-full sm:w-[1024px]' : 
-            config.terminalWidth === 'xl' ? 'w-full sm:w-[1280px]' : 
-            'w-full sm:w-[768px]' // md/default
+            config.terminalWidth === 'sm' ? 'w-full sm:min-w-[512px]' : 
+            config.terminalWidth === 'lg' ? 'w-full sm:w-[1024px] sm:min-w-[1024px]' : 
+            config.terminalWidth === 'xl' ? 'w-full sm:w-[1280px] sm:min-w-[1280px]' : 
+            'w-full sm:min-w-[768px]' // md/default
           )}
         >
           {/* Inner wrapper handles border, radius, and strict clipping */}
           <div 
-            className="flex flex-col w-full h-full rounded-xl overflow-hidden ring-1 ring-white/10"
+            className="flex flex-col w-full min-w-max h-full rounded-xl overflow-hidden ring-1 ring-white/10"
             style={{ backgroundColor: theme.plain.backgroundColor as string || '#1e1e1e' }}
           >
             {/* Mac-like Window Controls */}
@@ -83,7 +84,7 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
             </div>
 
             {/* Code Area */}
-            <div className="flex-1 overflow-auto p-4 md:p-6 text-sm md:text-base selection:bg-white/20">
+            <div className={cn("flex-1 p-4 md:p-6 selection:bg-white/20", isLargeTerminal ? "text-xs md:text-sm" : "text-sm md:text-base")}>
               <Highlight
                 theme={theme}
                 code={config.code}
@@ -98,7 +99,7 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
                       const { key: lineKey, ...lineProps } = getLineProps({ line, key: i });
                       return (
                         <div key={(lineKey as React.Key) || i} {...lineProps} className={cn(lineProps.className, "table-row")}>
-                          <span className="table-cell text-right select-none opacity-40 pr-4 text-xs font-mono align-middle">
+                          <span className={cn("table-cell text-right select-none opacity-40 pr-4 font-mono align-middle", isLargeTerminal ? "text-[10px] md:text-xs" : "text-xs")}>
                             {i + 1}
                           </span>
                           <span className="table-cell">
@@ -116,10 +117,10 @@ export const TerminalPreview = forwardRef<HTMLDivElement, TerminalPreviewProps>(
             </div>
           </div>
 
-          <span className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2 text-[10px] leading-none font-mono tracking-wide text-white/60 select-none">
-            {'>>Code2Snap<<'}
-          </span>
         </div>
+        <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] leading-none font-mono tracking-wide text-white/60 select-none whitespace-nowrap">
+          {'>>Code2Snap<<'}
+        </span>
       </div>
     );
   }
