@@ -1,19 +1,24 @@
-# Code2Snap
+# ✨ Code2Snap
 
-Code2Snap is a free and open-source web app for turning code snippets into beautiful, terminal-style images. Paste your code, customize the theme and background, then export your snapshot as PNG or SVG.
+Welcome to **Code2Snap** — a free, cheerful, and open-source app for turning your code into beautiful terminal-style snapshots. Paste your snippet, pick a theme, add a lovely background, and export a polished image in seconds. 🎉
 
-## Features
+Whether you are sharing a quick tip, showing off a project, writing docs, or posting on social media, Code2Snap helps your code look clean, colorful, and ready to share.
 
-- Beautiful syntax-highlighted code previews
-- Multiple terminal themes
-- Gradient backgrounds, solid color picker, and image upload backgrounds
-- Adjustable padding, terminal size, and export scale
-- Export snapshots as PNG or SVG
-- Save and reload local presets
-- Responsive editor and preview layout
-- Code2Snap loading screen with a fading logo
+## 🌟 Features
 
-## Tech Stack
+- 🎨 Beautiful syntax-highlighted code previews
+- 🖥️ Terminal-style window with a clean title bar
+- 🌈 Gradient backgrounds and background presets
+- 🎯 Solid background color picker
+- 🖼️ Custom image background uploads
+- 📐 Adjustable padding, terminal size, and export scale
+- 📦 Export as PNG or SVG
+- 💾 Save and reload local presets
+- 📱 Responsive layout for desktop and mobile
+- 💜 Code2Snap loading screen with a fading logo
+- 🆓 Free and open source
+
+## 🛠️ Tech Stack
 
 - [Next.js](https://nextjs.org/)
 - [React](https://react.dev/)
@@ -21,76 +26,74 @@ Code2Snap is a free and open-source web app for turning code snippets into beaut
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Prism React Renderer](https://github.com/FormidableLabs/prism-react-renderer)
 - [html-to-image](https://github.com/bubkoo/html-to-image)
+- [Bun](https://bun.sh/)
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js 20 or newer recommended
-- [Bun](https://bun.sh/) recommended, or npm
+- [Bun](https://bun.sh/) recommended, or npm if you prefer
 
-### Installation
+### Install dependencies
 
 ```bash
 bun install
 ```
 
-### Development
+### Start the development server
 
 ```bash
 bun dev
 ```
 
-Open the local URL shown in your terminal, usually:
+Then open the local URL shown in your terminal, usually:
 
 ```text
 http://localhost:3000
 ```
 
-### Build
+## 📜 Scripts
 
 ```bash
-bun build
+bun dev      # Start the development server
+bun build    # Create a production build
+bun start    # Start the production server
+bun lint     # Run ESLint
 ```
 
-### Start Production Build
+> This repository includes a `bun.lock`, so Bun is the preferred package manager.
 
-```bash
-bun start
-```
+## 🤝 Open Source
 
-### Lint
+Code2Snap is open source under the MIT License. You can use it, fork it, customize it, and share your improvements with the community. Contributions are very welcome! ✨
 
-```bash
-bun lint
-```
+Fun ideas to contribute:
 
-> This repository includes a `bun.lock`, so Bun is the preferred package manager. npm can still work if you prefer it.
+- Add more syntax themes
+- Add more gradient/background presets
+- Improve exports
+- Add language-specific starter snippets
+- Polish the UI and animations
+- Improve accessibility
+- Fix bugs
+- Make the docs even better
 
-## Open Source
-
-Code2Snap is an open-source project. You are welcome to use it, fork it, improve it, and contribute new features or fixes.
-
-Good contributions include:
-
-- New export options
-- More syntax themes
-- More background presets
-- UI/UX improvements
-- Bug fixes
-- Documentation improvements
-
-## Project Structure
+## 📁 Project Structure
 
 ```text
-app/                     Next.js app routes and layout
-components/page/          Main Code2Snap page components
-components/ui/            Reusable UI components
+app/                         Next.js app routes, layout, and loading UI
+components/page/              Main Code2Snap page components
+components/ui/                Reusable UI components
 components/terminal-preview.tsx
-lib/                      Shared types and utilities
-hooks/                    React hooks
+lib/                          Shared types and utilities
+hooks/                        React hooks
 ```
 
-## License
+## 📄 License
 
-This project is intended to be free and open source. Add a `LICENSE` file, such as MIT, before publishing publicly.
+Code2Snap is released under the [MIT License](./LICENSE).
+
+---
+
+Made with 💜 for developers who like pretty code snapshots.
